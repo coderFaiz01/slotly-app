@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book Haircut Appointment - Slotly</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Book Your Haircut</h1>
+        <p class="subtitle">Find and book your perfect time slot with ease.</p>
+        <p>Select an available time slot below to book your appointment.</p>
+
+        <div id="appointment-slots">
+            <div class="slot available" data-time="09:00">09:00 AM</div>
+            <div class="slot available" data-time="10:00">10:00 AM</div>
+            <div class="slot available" data-time="11:00">11:00 AM</div>
+            <div class="slot available" data-time="13:00">01:00 PM</div>
+            <div class="slot available" data-time="14:00">02:00 PM</div>
+        </div>
+
+        <div id="booking-form">
+            <h2>Confirm Your Booking</h2>
+            <p>You are about to book the <span id="selected-time-display"></span> slot.</p>
+            <label for="user-name">Your Name:</label>
+            <input type="text" id="user-name" placeholder="Enter your name" required>
+            <button id="confirm-booking-btn">Confirm Booking</button>
+            <button id="cancel-booking-btn">Cancel</button>
+        </div>
+
+        <div id="confirmation-message">
+            <h2>Appointment Confirmed!</h2>
+            <p>Your appointment has been successfully requested. The salon owner will review it shortly.</p>
+            <p>You booked for: <span id="final-booked-time"></span></p>
+            <button onclick="location.reload()">Book Another Appointment</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
