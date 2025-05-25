@@ -11,32 +11,45 @@
 
 <body>
     <div class="container">
-        <h1>Book Your Haircut</h1>
-        <p class="subtitle">Find and book your perfect time slot with ease.</p>
-        <p>Select an available time slot below to book your appointment.</p>
-
-        <div id="appointment-slots">
-            <div class="slot available" data-time="09:00">09:00 AM</div>
-            <div class="slot available" data-time="10:00">10:00 AM</div>
-            <div class="slot available" data-time="11:00">11:00 AM</div>
-            <div class="slot available" data-time="13:00">01:00 PM</div>
-            <div class="slot available" data-time="14:00">02:00 PM</div>
+        <div class="hero-section">
+            <h1 class="hero-title">Book Your Next Look!</h1>
+            <p class="hero-subtitle">Effortless appointments for your perfect style.</p>
         </div>
 
-        <div id="booking-form">
-            <h2>Confirm Your Booking</h2>
-            <p>You are about to book the <span id="selected-time-display"></span> slot.</p>
-            <label for="user-name">Your Name:</label>
-            <input type="text" id="user-name" placeholder="Enter your name" required>
-            <button id="confirm-booking-btn">Confirm Booking</button>
-            <button id="cancel-booking-btn">Cancel</button>
-        </div>
+        <div class="app-content">
+            <h2>Select Your Appointment Details</h2>
 
-        <div id="confirmation-message">
-            <h2>Appointment Confirmed!</h2>
-            <p>Your appointment has been successfully requested. The salon owner will review it shortly.</p>
-            <p>You booked for: <span id="final-booked-time"></span></p>
-            <button onclick="location.reload()">Book Another Appointment</button>
+            <div class="date-selection-mockup">
+                <label for="appointment-date">Date:</label>
+                <input type="text" id="appointment-date" value="Today, May 25" readonly>
+                <button class="calendar-btn">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+                        <path
+                            d="M19 4H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.89-2-2-2zM5 20V8h14V20H5zm2-10h10v2H7zm0 4h10v2H7z" />
+                    </svg>
+                </button>
+            </div>
+
+            <p class="instruction-text">Choose an available time slot below:</p>
+
+            <div id="appointment-slots">
+            </div>
+
+            <div id="booking-form" style="display: none;">
+                <h2>Confirm Your Booking</h2>
+                <p>You are about to book the <span id="selected-time-display"></span> slot.</p>
+                <label for="user-name">Your Name:</label>
+                <input type="text" id="user-name" placeholder="Enter your name" required>
+                <button id="confirm-booking-btn">Confirm Booking</button>
+                <button id="cancel-booking-btn">Cancel</button>
+            </div>
+
+            <div id="confirmation-message" style="display: none;">
+                <h2>Appointment Confirmed!</h2>
+                <p>Your appointment has been successfully requested. The salon owner will review it shortly.</p>
+                <p>You booked for: <span id="final-booked-time"></span></p>
+                <button onclick="location.reload()">Book Another Appointment</button>
+            </div>
         </div>
     </div>
 

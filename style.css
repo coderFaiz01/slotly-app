@@ -1,41 +1,46 @@
 /* Import Google Fonts - Poppins */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap');
 
+:root {
+    /* Define a color palette for consistency */
+    --primary-blue: #007bff;
+    --primary-blue-dark: #0056b3;
+    --accent-green: #4CAF50;
+    --accent-green-dark: #43A047;
+    --light-bg: #f0f4f8;
+    --dark-text: #2c3e50;
+    --medium-text: #555;
+    --light-border: #d9e2ec;
+    --card-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    --button-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    --red-error: #dc3545;
+}
+
 body {
     font-family: 'Poppins', sans-serif;
-    /* Use Poppins as primary font */
-    background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
-    /* Subtle blue-grey gradient background */
+    background: linear-gradient(135deg, #e0f2f7, #c1dce7);
     display: flex;
     justify-content: center;
-    align-items: center;
-    /* Center content vertically */
+    align-items: flex-start;
     min-height: 100vh;
     margin: 0;
     padding: 20px;
     box-sizing: border-box;
     overflow-x: hidden;
-    color: #333;
-    /* Default text color */
+    color: var(--dark-text);
 }
 
 .container {
     background-color: #ffffff;
-    padding: 40px;
-    /* More padding */
+    padding: 0;
     border-radius: 16px;
-    /* Even more rounded corners */
-    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
-    /* Stronger, softer shadow */
+    box-shadow: var(--card-shadow);
     width: 100%;
-    max-width: 700px;
-    /* Wider container */
-    text-align: center;
+    max-width: 750px;
+    overflow: hidden;
     opacity: 0;
     transform: translateY(30px);
-    /* Start further down */
     animation: fadeInSlideUp 0.9s forwards ease-out;
-    /* Slightly longer animation */
 }
 
 @keyframes fadeInSlideUp {
@@ -45,91 +50,170 @@ body {
     }
 }
 
-h1 {
-    color: #2c3e50;
-    /* Dark blue-grey */
-    margin-bottom: 15px;
-    /* Reduced margin for subtitle */
-    font-size: 2.8em;
-    /* Larger heading */
+/* Hero Section Styling */
+.hero-section {
+    background: linear-gradient(135deg, var(--primary-blue), var(--primary-blue-dark));
+    color: white;
+    padding: 50px 30px;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-title {
+    font-size: 3.2em;
     font-weight: 700;
-    /* Bolder */
-    letter-spacing: -1px;
+    margin-bottom: 10px;
+    letter-spacing: -1.5px;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    animation: textFadeIn 1s forwards ease-out;
+    animation-delay: 0.5s;
+    opacity: 0;
 }
 
-.subtitle {
-    /* NEW: Style for a potential subtitle */
-    color: #6a7b8f;
-    font-size: 1.1em;
-    margin-bottom: 30px;
-    font-weight: 400;
-}
-
-p {
-    color: #555;
-    margin-bottom: 35px;
-    /* Increased margin */
-    line-height: 1.7;
+.hero-subtitle {
+    font-size: 1.3em;
     font-weight: 300;
-    /* Lighter font weight */
+    margin-bottom: 0;
+    opacity: 0;
+    animation: textFadeIn 1s forwards ease-out;
+    animation-delay: 0.7s;
+}
+
+@keyframes textFadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+/* Main App Content Area */
+.app-content {
+    padding: 30px 40px;
+    background-color: #ffffff;
+}
+
+h2 {
+    color: var(--dark-text);
+    margin-bottom: 25px;
+    font-size: 2em;
+    font-weight: 600;
+    text-align: center;
+}
+
+/* Instruction Text */
+.instruction-text {
+    color: var(--medium-text);
+    margin-bottom: 30px;
+    line-height: 1.6;
+    font-weight: 400;
+    font-size: 1.1em;
+}
+
+/* Date Selection Mockup */
+.date-selection-mockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 35px;
+    background-color: var(--light-bg);
+    padding: 15px 25px;
+    border-radius: 10px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.date-selection-mockup label {
+    font-weight: 600;
+    color: var(--dark-text);
+    margin-right: 15px;
+    font-size: 1.1em;
+}
+
+.date-selection-mockup input[type="text"] {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: 1px solid var(--light-border);
+    border-radius: 8px;
+    font-size: 1.1em;
+    font-family: 'Poppins', sans-serif;
+    color: var(--dark-text);
+    background-color: #fcfdff;
+    cursor: pointer;
+    text-align: center;
+    max-width: 180px;
+}
+
+.date-selection-mockup .calendar-btn {
+    background-color: var(--accent-green);
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-left: 15px;
+    box-shadow: var(--button-shadow);
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.date-selection-mockup .calendar-btn:hover {
+    background-color: var(--accent-green-dark);
+    transform: translateY(-2px);
+}
+
+.date-selection-mockup .calendar-btn svg {
+    width: 24px;
+    height: 24px;
+    fill: currentColor;
 }
 
 #appointment-slots {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
-    /* Adjusted slot size */
     gap: 20px;
-    /* More space between slots */
     margin-bottom: 40px;
 }
 
 .slot {
-    background-color: #f0f4f8;
-    /* Light grey for default */
+    background-color: var(--light-bg);
     padding: 20px;
     border-radius: 10px;
-    /* More rounded slots */
     cursor: pointer;
     transition: all 0.3s ease-in-out;
     font-weight: 600;
-    color: #333;
+    color: var(--dark-text);
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
-    /* More prominent shadow on slots */
     display: flex;
     justify-content: center;
     align-items: center;
     font-size: 1.1em;
-    /* Slightly larger text in slots */
 }
 
 .slot:hover {
     background-color: #e0e7ee;
     transform: translateY(-7px);
-    /* More pronounced lift on hover */
     box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
 }
 
 .slot.available {
-    background: linear-gradient(45deg, #4CAF50, #66BB6A);
-    /* Gradient for available */
+    background: linear-gradient(45deg, var(--accent-green), var(--accent-green-dark));
     color: white;
 }
 
 .slot.available:hover {
-    background: linear-gradient(45deg, #43A047, #5cb85d);
+    background: linear-gradient(45deg, var(--accent-green-dark), #5cb85d);
     transform: translateY(-7px) scale(1.03);
-    /* Slight scale up as well */
 }
 
 .slot.selected {
-    background: linear-gradient(45deg, #2196F3, #42a5f5);
-    /* Gradient for selected */
+    background: linear-gradient(45deg, var(--primary-blue), #42a5f5);
     color: white;
-    border: 3px solid #1976D2;
+    border: 3px solid var(--primary-blue-dark);
     transform: scale(1.08);
-    /* Slightly larger when selected */
     box-shadow: 0 0 0 6px rgba(33, 150, 243, 0.3);
-    /* Outer glow for selected */
     animation: slotSelectedBounce 0.3s ease-out;
 }
 
@@ -149,14 +233,12 @@ p {
 
 .slot.booked {
     background-color: #FFC107;
-    color: #444;
-    /* Darker text for better contrast */
+    color: var(--dark-text);
     cursor: not-allowed;
     opacity: 0.7;
     transform: none;
     box-shadow: none;
     font-size: 0.9em;
-    /* Slightly smaller text for booked */
 }
 
 .slot.accepted {
@@ -173,34 +255,29 @@ p {
 #booking-form,
 #confirmation-message {
     padding: 30px;
-    /* More padding */
     border: none;
-    /* Remove border, rely on shadow */
     border-radius: 10px;
     margin-top: 30px;
     background-color: #fcfcfc;
     box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-    /* Stronger shadow */
 
     max-height: 0;
     overflow: hidden;
     opacity: 0;
     transform: translateY(20px);
     transition: max-height 0.6s ease-out, opacity 0.5s ease-out, transform 0.5s ease-out;
-    /* Longer transitions */
 }
 
 #booking-form.visible,
 #confirmation-message.visible {
     max-height: 600px;
-    /* Adjusted max-height */
     opacity: 1;
     transform: translateY(0);
 }
 
 #booking-form h2,
 #confirmation-message h2 {
-    color: #2c3e50;
+    color: var(--dark-text);
     margin-bottom: 25px;
     font-size: 1.8em;
     font-weight: 600;
@@ -209,72 +286,57 @@ p {
 #booking-form label {
     display: block;
     margin-bottom: 15px;
-    /* More space */
     font-weight: 600;
-    /* Bolder label */
-    color: #333;
+    color: var(--dark-text);
     text-align: left;
 }
 
 #booking-form input[type="text"] {
     width: calc(100% - 28px);
-    /* Adjusted for padding and border */
     padding: 14px;
-    /* More padding */
     margin-bottom: 30px;
-    border: 1px solid #d9e2ec;
-    /* Softer border color */
+    border: 1px solid var(--light-border);
     border-radius: 8px;
-    /* More rounded input */
     font-size: 18px;
-    /* Larger font */
     outline: none;
     transition: border-color 0.3s ease, box-shadow 0.3s ease;
+    font-family: 'Poppins', sans-serif;
 }
 
 #booking-form input[type="text"]:focus {
-    border-color: #007bff;
+    border-color: var(--primary-blue);
     box-shadow: 0 0 0 4px rgba(0, 123, 255, 0.2);
-    /* Softer glow on focus */
 }
 
 button {
-    background: linear-gradient(45deg, #007bff, #0056b3);
-    /* Gradient for buttons */
+    background: linear-gradient(45deg, var(--primary-blue), var(--primary-blue-dark));
     color: white;
     padding: 15px 30px;
-    /* More padding */
     border: none;
     border-radius: 8px;
-    /* More rounded buttons */
     cursor: pointer;
     font-size: 18px;
-    /* Larger font */
     font-weight: 600;
     transition: background-color 0.3s ease, transform 0.15s ease, box-shadow 0.15s ease, background 0.3s ease;
     margin: 10px;
-    /* More margin */
     letter-spacing: 0.7px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: var(--button-shadow);
+    font-family: 'Poppins', sans-serif;
 }
 
 button:active {
     transform: translateY(2px);
-    /* More pronounced press */
     box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
 }
 
 button:hover {
-    background: linear-gradient(45deg, #0056b3, #004085);
-    /* Darker gradient on hover */
+    background: linear-gradient(45deg, var(--primary-blue-dark), #004085);
     transform: translateY(-3px);
-    /* More pronounced lift on hover */
     box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
 }
 
 #cancel-booking-btn {
     background: linear-gradient(45deg, #6c757d, #5a6268);
-    /* Grey gradient for cancel */
 }
 
 #cancel-booking-btn:hover {
@@ -283,8 +345,7 @@ button:hover {
 
 #final-booked-time {
     font-weight: 700;
-    /* Bolder */
-    color: #007bff;
+    color: var(--primary-blue);
     font-size: 1.1em;
 }
 
@@ -292,156 +353,138 @@ button:hover {
     margin-top: 30px;
 }
 
-/* Service Provider View Styles (kept for future separate provider.html) */
-#provider-view {
-    text-align: left;
-}
-
-#provider-view h2 {
-    color: #2c3e50;
-    margin-bottom: 25px;
-    font-size: 1.8em;
-}
-
-#appointment-list {
-    margin-top: 20px;
-}
-
-.appointment-item {
-    background-color: #fefefe;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 15px 20px;
-    margin-bottom: 12px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap;
-    gap: 15px;
-    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.05);
-    transition: all 0.3s ease-in-out;
-}
-
-.appointment-item:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.08);
-}
-
-.appointment-item span {
-    font-weight: 500;
-    color: #333;
-}
-
-.appointment-item small {
-    font-size: 0.85em;
-    color: #777;
-    margin-top: 5px;
-    flex-basis: 100%;
-}
-
-.appointment-item .status {
-    padding: 6px 12px;
-    border-radius: 4px;
-    font-weight: bold;
-    color: white;
-    font-size: 0.9em;
-}
-
-.appointment-item .status.pending {
-    background-color: #FFC107;
-    color: #333;
-}
-
-.appointment-item .status.accepted {
-    background-color: #28a745;
-}
-
-.appointment-item .actions button {
-    margin-left: 10px;
-    padding: 9px 18px;
-    font-size: 15px;
-    border-radius: 5px;
-}
-
-.appointment-item .actions button.accept-btn {
-    background-color: #28a745;
-}
-
-.appointment-item .actions button.accept-btn:hover {
-    background-color: #218838;
-}
-
-.appointment-item .actions button.reject-btn {
-    background-color: #6c757d;
-}
-
-.appointment-item .actions button.reject-btn:hover {
-    background-color: #5a6268;
-}
-
-#provider-view #no-appointments-message {
-    color: #777;
-    font-style: italic;
-    margin-top: 30px;
-    padding: 20px;
-    background-color: #f0f0f0;
-    border-radius: 8px;
-    border: 1px dashed #ccc;
-}
-
 /* Responsive adjustments */
-@media (max-width: 600px) {
-
-    /* Adjusted breakpoint */
+@media (max-width: 768px) {
     .container {
-        padding: 25px;
-        /* Slightly less padding on small screens */
+        max-width: 95%;
     }
 
-    h1 {
-        font-size: 2.2em;
+    .hero-section {
+        padding: 40px 20px;
     }
 
-    .subtitle {
+    .hero-title {
+        font-size: 2.5em;
+    }
+
+    .hero-subtitle {
+        font-size: 1.1em;
+    }
+
+    .app-content {
+        padding: 25px 30px;
+    }
+
+    h2 {
+        font-size: 1.8em;
+    }
+
+    .instruction-text {
         font-size: 1em;
+    }
+
+    .date-selection-mockup {
+        flex-wrap: wrap;
+        justify-content: center;
+        padding: 10px 15px;
+    }
+
+    .date-selection-mockup label {
+        flex-basis: 100%;
+        margin-bottom: 10px;
+        text-align: center;
+    }
+
+    .date-selection-mockup input[type="text"] {
+        max-width: 150px;
+    }
+
+    .date-selection-mockup .calendar-btn {
+        margin-left: 10px;
+        padding: 8px 12px;
     }
 
     button {
         padding: 12px 22px;
         font-size: 16px;
-        margin: 6px;
     }
 
     #booking-form input[type="text"] {
-        width: calc(100% - 20px);
         padding: 12px;
         font-size: 16px;
     }
 
-    .appointment-item {
-        flex-direction: column;
-        align-items: flex-start;
+    .slot {
+        padding: 18px;
+        font-size: 1em;
+    }
+}
+
+@media (max-width: 480px) {
+    .hero-section {
+        padding: 30px 15px;
     }
 
-    .appointment-item .actions {
-        width: 100%;
-        display: flex;
-        justify-content: flex-start;
-        margin-top: 10px;
+    .hero-title {
+        font-size: 2em;
+        letter-spacing: -1px;
     }
 
-    .appointment-item .actions button {
-        margin-left: 0;
-        margin-right: 10px;
+    .hero-subtitle {
+        font-size: 0.9em;
+    }
+
+    .app-content {
+        padding: 20px 20px;
+    }
+
+    h2 {
+        font-size: 1.5em;
+    }
+
+    .instruction-text {
+        font-size: 0.9em;
+        margin-bottom: 20px;
     }
 
     #appointment-slots {
         grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
-        /* Smaller slots on very small screens */
+        gap: 15px;
+        margin-bottom: 30px;
     }
 
     .slot {
         padding: 15px;
+        font-size: 0.9em;
+    }
+
+    button {
+        padding: 10px 18px;
+        font-size: 15px;
+        margin: 5px;
+    }
+
+    #booking-form input[type="text"] {
+        width: calc(100% - 20px);
+        padding: 10px;
+        font-size: 15px;
+    }
+
+    .date-selection-mockup label {
         font-size: 1em;
+    }
+
+    .date-selection-mockup input[type="text"] {
+        font-size: 1em;
+        padding: 10px;
+    }
+
+    .date-selection-mockup .calendar-btn {
+        padding: 6px 10px;
+    }
+
+    .date-selection-mockup .calendar-btn svg {
+        width: 20px;
+        height: 20px;
     }
 }
