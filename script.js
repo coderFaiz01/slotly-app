@@ -544,72 +544,58 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 });
 
-// --- Provider View Logic (Still for separate file) ---
-// This part remains conceptual and would be moved to a provider.html's script
-// For the provider side, you'd implement specific login/auth for providers,
-// and their API calls would be to update/delete appointments.
-// The renderProviderAppointments, handleAcceptAppointment, handleCompleteAppointment
-// functions will be relevant there.
-const providerViewContainer = document.getElementById('provider-view');
-const appointmentList = document.getElementById('appointment-list');
-const noAppointmentsMessage = document.getElementById('no-appointments-message');
+const currentAppointments = await fetchAppointments(); // Provider fetches ALL appointments
+appointmentList.innerHTML = '';
 
-async function renderProviderAppointments() {
-    if (!appointmentList) return;
+if (currentAppointments.length === 0) {
+    noAppointmentsMessage.style.display = 'block';
+    return;
+} else {
+    noAppointmentsMessage.style.display = 'none';
+}
 
-    const currentAppointments = await fetchAppointments(); // Provider fetches ALL appointments
-    appointmentList.innerHTML = '';
+currentAppointments.forEach(app => {
+    const appItem = document.createElement('div');
+    appItem.classList.add('appointment-item');
+    appItem.setAttribute('data-id', app.id);
 
-    if (currentAppointments.length === 0) {
-        noAppointmentsMessage.style.display = 'block';
-        return;
-    } else {
-        noAppointmentsMessage.style.display = 'none';
+    let statusClass = '';
+    switch (app.status) {
+        case 'pending': statusClass = 'pending'; break;
+        case 'accepted': statusClass = 'accepted'; break;
+        case 'cancelled': statusClass = 'cancelled'; break; // Added cancelled status
+        default: statusClass = 'pending';
     }
 
-    currentAppointments.forEach(app => {
-        const appItem = document.createElement('div');
-        appItem.classList.add('appointment-item');
-        appItem.setAttribute('data-id', app.id);
-
-        let statusClass = '';
-        switch (app.status) {
-            case 'pending': statusClass = 'pending'; break;
-            case 'accepted': statusClass = 'accepted'; break;
-            case 'cancelled': statusClass = 'cancelled'; break; // Added cancelled status
-            default: statusClass = 'pending';
-        }
-
-        appItem.innerHTML = `
+    appItem.innerHTML = `
             <span>Name: ${app.userName}</span>
             <span>Time: ${app.time} ${app.time < '12:00' ? 'AM' : 'PM'}</span>
             <span class="status ${statusClass}">${app.status.toUpperCase()}</span>
             <div class="actions">
                 ${app.status === 'pending' ?
-                `<button class="accept-btn" data-id="${app.id}">Accept</button>` : ''
-            }
+            `<button class="accept-btn" data-id="${app.id}">Accept</button>` : ''
+        }
                 ${app.status === 'accepted' ?
-                `<button class="reject-btn" data-id="${app.id}">Mark Completed</button>` : ''
-            }
+            `<button class="reject-btn" data-id="${app.id}">Mark Completed</button>` : ''
+        }
                 ${app.status === 'cancelled' ?
-                `<button class="delete-btn" data-id="${app.id}">Delete</button>` : '' // Option to delete cancelled
-            }
+            `<button class="delete-btn" data-id="${app.id}">Delete</button>` : '' // Option to delete cancelled
+        }
             </div>
             <small>Booked at: ${new Date(app.bookedAt).toLocaleString()}</small>
         `;
-        appointmentList.appendChild(appItem);
-    });
+    appointmentList.appendChild(appItem);
+});
 
-    appointmentList.querySelectorAll('.accept-btn').forEach(button => {
-        button.addEventListener('click', handleAcceptAppointment);
-    });
-    appointmentList.querySelectorAll('.reject-btn').forEach(button => {
-        button.addEventListener('click', handleCompleteAppointment);
-    });
-    appointmentList.querySelectorAll('.delete-btn').forEach(button => { // New delete handler
-        button.addEventListener('click', handleDeleteAppointment);
-    });
-}
+appointmentList.querySelectorAll('.accept-btn').forEach(button => {
+    button.addEventListener('click', handleAcceptAppointment);
+});
+appointmentList.querySelectorAll('.reject-btn').forEach(button => {
+    button.addEventListener('click', handleCompleteAppointment);
+});
+appointmentList.querySelectorAll('.delete-btn').forEach(button => { // New delete handler
+    button.addEventListener('click', handleDeleteAppointment);
+});
 
 // Provider actions use the makeAuthenticatedRequest, but would need a provider token
 async function handleAcceptAppointment(event) {
